@@ -22,13 +22,15 @@
 ![](https://i.imgur.com/BhS6z7R.png)
 
 4. En la pesataña **OS**, configuramos
+
 	- Storage: local
 	- ISO Image: La ISO que descargamos
 	- Type: Microsoft Windows
 	- Add additional drive for VirtIO drivers: Seleccionamos la ISO de VirtIO
 
 ![](https://i.imgur.com/RbRexgh.png)
-5. En **System**:
+
+5. En **System**
 	- Machine: q35 (es más moderno)
 	- BIOS: OVMF (UEFI) porque SEABIOS es legacy
 	- Add EFI Disk: activado.

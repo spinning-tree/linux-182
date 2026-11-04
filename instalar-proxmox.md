@@ -28,7 +28,7 @@
 ![](https://i.imgur.com/BZYAczW.png)
 
 8. Ahora, desde ssh en el pc de gestión ejecutas `sudo apt update && sudo apto full-upgrade -y`
-9. Ya puedes [instalar windows](instalar-windows-proxmox)
+9. Ya puedes [instalar windows](instalar-windows-proxmox) o [instalar linux](instalar-linux-proxmox)
 
 ## setear threshold de batería
 

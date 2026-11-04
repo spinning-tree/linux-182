@@ -17,7 +17,7 @@
 
 ![](https://i.imgur.com/5ERrkf5.png)
 
-3. Cargadas las .iso, vamos a **Create VM**. En General ponemos un nombre a la VM
+3. Cargadas las .iso, vamos a **Create VM**. En **General** ponemos un nombre a la VM
 
 ![](https://i.imgur.com/BhS6z7R.png)
 
@@ -129,4 +129,60 @@ root@november:~#
 ![](https://i.imgur.com/R5YdNcB.png[/img)
 
 ## instalación de windows 11
+
+1. Arrancar la vm. Siguiente -> Siguiente
+
+![](https://i.imgur.com/Wm57D9m.png)
+
+2. En la pestaña de discos aparecerá vacío (lo normal, hay que cargar los drivers para que windows vea los discos). `Load Driver -> Browse -> CD Drive virtio-win -> vioscsi -> w11 -> amd64`
+
+![](https://i.imgur.com/z6nXotF.png)
+
+
+3. El disco de 64 gb debería aparecer.
+
+> Es buena idea cargar también los drivers de red `Load Driver -> Browse -> CD Drive virtio-win -> netKVM -> w11 -> amd64` para que Windows ya los tenga.
+
+4. Instalar
+
+![](https://i.imgur.com/YHpWX9F.png)
+
+5. Cuando reinicie, poner "i don't have internet", configurar un nombre de usuario, contraseña, etc.
+6. Una vez en el escritorio de windows, ejecutar el `virtio-win-guest-tools.exe` 
+
+![](https://i.imgur.com/ZQPMnsx.png)
+
+> Recordar: este paso permite instalar el QEMU Guest Agent, un servicio de windows que habla con proxmox por un canal serie virtual sin pasar por la red. Esto permite ver las ips de la vm, apagarla, reiniciarla limpiamente, hacer snapshots, etc.
+
+7. Como paso final, configurar una ip estática y probar conexión con el gateway e internet.
+
+# convertir una vm en plantilla
+
+1. Es buena idea tomar una vm y convertirla en plantilla de otras vms (esto evita tener que repetir todos los pasos anteriores)
+2. Lo primero es preparar el sistema. En CMD, ejecutar 
+
+```
+C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown
+```
+
+> Durante este proceso, BitLocker puede dar problemas, mejor desactivarlo con `manage-bde -off C:` con permisos de admin.
+
+![](https://i.imgur.com/PB2FqjB.png)
+
+3. Cuando la VM se apague, click derecho en VM100 -> Convert to template
+
+> Esto es irreversible. La vm no se puede arrancar, solo sirve para clonar.
+
+4. Aquí conviene saber: 
+	- **Full-Clone**: se hará una copia completa e independiente del disco (tarda más y ocupa más, pero puedes borrar o modificar la plantilla sin afectar al clon.
+	- **Linked clone:** el clon solo guarda los **cambios** respecto al disco de la plantilla. Se crea al instante y ocupa muy poco, pero depende de ella: no se puede borrar la plantilla mientras existan clones enlazados, y si su disco se corrompe, caen todos.
+
+5. Para clonar, click derecho en la plantilla -> Clone, le damos un nombre y elegimos linked o full
+
+![](https://imgur.com/RDJ5rzU.png)
+
+6. Iniciamos la VM y pasamos el asistente. Listo!
+
+> Si quieres que tus equipos de la red de fuera vean los equipos de la red interna de proxmox (vmbr1) tienes que aplicar rutas estáticas. En mi caso, una mac, basta con añadir la ruta de la red interna hacia la ip de proxmox en la red externa `sudo route -n add -net 10.10.10.0/24 192.168.1.99` 
+
 

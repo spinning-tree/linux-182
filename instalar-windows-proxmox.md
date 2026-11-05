@@ -12,7 +12,7 @@
 ![](https://i.imgur.com/SBypM6I.png)
 ## crear la vm de windows
 
-1. En la web de windows (https://www.microsoft.com/es-es/evalcenter) descargar las .iso de windows server 2025 y windows 11 enterprise
+1. En la web de windows (https://www.microsoft.com/es-es/evalcenter) descargar la .iso de windows 11 enterprise
 2. Una vez descargadas, cargarlas en proxmox: Local -> ISO Images -> Upload
 
 ![](https://i.imgur.com/5ERrkf5.png)

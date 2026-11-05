@@ -1,5 +1,7 @@
 # configuración de windows server
 
+> Previamente hay que [instalar windows server](instalar-windows-server-proxmox)
+
 ## glosario básico
 
 - **SYSVOL**: carpeta compartida de cada DC donde se guardan las GPO y los scripts. Se replica entre DCs para que todos tengan lo mismo.

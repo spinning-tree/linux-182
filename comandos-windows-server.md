@@ -1,15 +1,15 @@
-# Comandos para windows server
+# comandos para windows server
 
 ## Básicos de red
 
-| Comando                                                    | Para qué                               |
-| ---------------------------------------------------------- | -------------------------------------- |
-| **Test-NetConnection** *nombre_DC* **-Port** *port_number* | Comprobar si llegas a un puerto del DC |
+| Comando                                                    | Para qué                                    |
+| ---------------------------------------------------------- | ------------------------------------------- |
+| **Test-NetConnection** *nombre_DC* **-Port** *port_number* | Comprobar si llegas a un puerto del DC      |
+| **ipconfig /all**                                          | Ver IP, puerta de enlace y DNS configurados |
 ## DNS
 
 | Comando                               | Para qué                                                                     |
 | ------------------------------------- | ---------------------------------------------------------------------------- |
-| **ipconfig /all**                     | Ver IP, puerta de enlace y DNS configurados                                  |
 | **ipconfig /flushdns**                | Vaciar la caché DNS                                                          |
 | **ipconfig /displaydns**              | Muestra la cache dns del equipo (Get-DnsClientCache)                         |
 | **ipconfig /registerdns**             | Volver a registrar el equipo en DNS                                          |

@@ -100,5 +100,63 @@ w32tm /query /status
 ```
 ## configuración de DHCP
 
+1. **Instalar el rol:** Server Manager → Manage → Add Roles and Features → Role-based → DC1 → marcar **DHCP Server** (aceptar añadir las herramientas) → Next hasta Install.
+
+![](https://imgur.com/0go0zy3.png)
+
+2. Al terminar, clic en la bandera amarilla → **Complete DHCP configuration** → Commit (Esto crea los grupos de seguridad y autoriza el servidor en AD con las credenciales del dominio)
+
+![](https://imgur.com/Lnt42op.png)
+
+3. **Crear el ámbito**: Tools -> DHCP -> desplegar dc1 -> click derecho en IPV4 -> New scope
+
+![](https://imgur.com/LlSE6nf.png)
+
+
+4. **Crear el ámbito:** Tools → DHCP → desplegar dc1 → clic derecho en **IPv4** → **New Scope**:
+    - Nombre: LAB
+    - Rango: 10.10.10.100 – 10.10.10.200, máscara 255.255.255.0
+    - Exclusiones: ninguna (el pool ya no incluye .1 ni .10)
+    - Duración de la concesión: por defecto (8 días)
+    - Configure options now: **Yes**
+    - Router (003): 10.10.10.1 → Add
+    - Domain name (015) y DNS (006): el asistente rellena el dominio. En DNS dejar solo 10.10.10.10 y eliminar cualquier otra IP que proponga.
+    - WINS: saltar
+    - Activate scope now: **Yes**
+
+> Verificar en la consola DHCP, IPv4 debe tener el icono verde (autorizado y activo). Si sale una flecha roja, clic derecho en dc1 → **Authorize** y luego refrescar.
+
+## configuración OUs
+En Server Manager -> Tools -> Active Directory Users and Computers:
+1. Clic derecho en **november.lab** → New → Organizational Unit → **LAB** → OK.
+2. Clic derecho en **LAB** → New → Organizational Unit, y repetir para cada una: **Equipos**, **Servidores**, **Usuarios**, **Grupos**.
+3. Dejar marcada “Protect container from accidental deletion” en todas.
+4. Redirigir los nuevos equipos/usuarios a las carpetas creadas
+
+```
+PS C:\WINDOWS\system32> redircmp "OU=Equipos,OU=LAB,DC=november,DC=lab"
+Redirection was successful.
+PS C:\WINDOWS\system32> redirusr "OU=Usuarios,OU=LAB,DC=november,DC=lab"
+Redirection was successful.
+PS C:\WINDOWS\system32>
+```
+
+![](https://imgur.com/WyhwApt.png)
+
+## Unir equipo al dominio
+
+> Antes de unir un equipo al dominio, conviene crear una cuenta de usuario en AD. 
+
+1. Ejecutar `sysdm.cpl` → pestaña Computer Name → **Change**.
+2. Ahí cambiar el nombre y unir en el mismo paso: marcar **Domain** -> escribir el dominio → OK.
+3. Credenciales: Administrador del dominio y su contraseña.
+4. Esperar confirmación -> reiniciar.
+
+![](https://imgur.com/kr5lIQS.png)
+
+# configuración adicional
+
+## gpos
+
 
 

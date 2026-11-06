@@ -5,7 +5,7 @@
 ## glosario básico
 
 - **SYSVOL**: carpeta compartida de cada DC donde se guardan las GPO y los scripts. Se replica entre DCs para que todos tengan lo mismo.
-- **NETLOGON**: tiene dos significados. Es un recurso compartido dentro de SYSVOL donde van los scripts de inicio de sesión, y también el servicio que autentica a usuarios y equipos y registra en DNS los registros del DC.
+- **NETLOGON**: es un recurso compartido dentro de SYSVOL donde van los scripts de inicio de sesión, y también el servicio que autentica a usuarios y equipos y registra en DNS los registros del DC.
 - **KDC (Key Distribution Center)**: el servicio de Kerberos. Cuando inicias sesión, te da el “ticket” que demuestra quién eres para acceder a recursos sin volver a meter la contraseña.
 - **Kerberos**: el protocolo de autenticación de AD. Es sensible a la hora: si los relojes difieren más de 5 minutos, falla.
 - **FSMO**: cinco tareas que solo puede hacer un DC a la vez para evitar conflictos. La que más vas a oír es el **emulador PDC**, que es la fuente de hora del dominio, gestiona los cambios de contraseña y es el DC por defecto para editar GPO.

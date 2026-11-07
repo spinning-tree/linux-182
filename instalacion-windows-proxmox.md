@@ -1,6 +1,6 @@
 # instalación de windows
 
-> Previamente hay que [instalar proxmox](instalar-proxmox)
+> Previamente hay que [instalar proxmox](instalacion-proxmox.md)
 
 ## virtio-win.iso
 

@@ -1,6 +1,6 @@
 # configuración de windows server
 
-> Previamente hay que [instalar windows server](instalar-windows-server-proxmox)
+> Previamente hay que [instalar windows server](instalacion-windows-server-proxmox.md)
 
 ## glosario básico
 
@@ -154,9 +154,4 @@ PS C:\WINDOWS\system32>
 
 ![](https://imgur.com/kr5lIQS.png)
 
-# configuración adicional
-
-## gpos
-
-
-
+> Seguir con [configuracion avanzada windows server](configuracion-avanzada-windows-server.md)

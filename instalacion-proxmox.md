@@ -28,7 +28,7 @@
 ![](https://i.imgur.com/BZYAczW.png)
 
 8. Ahora, desde ssh en el pc de gestión ejecutas `sudo apt update && sudo apto full-upgrade -y`
-9. Ya puedes [instalar windows](instalar-windows-proxmox) o [instalar linux](instalar-linux-proxmox)
+9. Ya puedes [instalar windows](instalacion-windows-proxmox.md), [instalar linux](instalacion-linux-proxmox.md), [instalar windows server](instalacion-windows-server-proxmox)
 
 > IMPORTANTE: Proxmox crea dos almacenamientos al instalarse, sobre el mismo disco: **local**: una carpeta normal (`/var/lib/vz`) del sistema de ficheros del host donde se guardan los ISOs, plantillas de contenedores, backups y snippets de cloud-init. Y **local-lvm**: un pool **LVM-thin**. Guarda **discos de VMs y contenedores**.
 ## setear threshold de batería

@@ -15,7 +15,6 @@
 | **nslookup** *dominio*                | Comprobar que el DNS resuelve el dominio                                    |
 | **nslookup -type=SRV** *fqdn_dominio* | Comprobar que DNS anuncia el DC (ejemplo: *ldap.tcp.dc.msdcs.november.lab)* |
 | **Resolve-DnsName** *dominio*         | Igual que nslookup, en PowerShell                                           |
-| **dcdiag /test:dns**                  | Prueba DNS completa del DC                                                  |
 ## ntp
 
 | Comando                                                                                                   | Para qué                                                                        |
@@ -30,23 +29,25 @@
 | ------------------------------ | --------------------------------------- |
 | **dcdiag /v**                  | Detalles completo de diagnóstico del DC |
 | **dcdiag /q**                  | Solo muestra errores                    |
+| **dcdiag /test:dns**           | Prueba DNS completa del DC              |
 | **nltest /dsgetdc:** *dominio* | Ver qué DC localiza el equipo           |
 | **nltest /dsregdns**           | Volver a registrar los SRV del DC       |
 | **Get-SmbShare**               | Ver que existan SYSVOL y NETLOGON       |
 # proxmox
 ## nodo
 
-| Comando                                 | Qué hace                                          |
-| --------------------------------------- | ------------------------------------------------- |
-| **pveversion -v**                       | Versión de Proxmox y paquetes                     |
-| **pvesh get /nodes**                    | Lista nodos y estado ram, cpu, online             |
-| **apt update && apt full-upgrade -y**   | Actualizar el sistema (nunca apt upgrade a secas) |
-| **systemctl status pveproxy pvedaemon** | Estado de la interfaz web y el daemon             |
-| **systemctl restart pveproxy**          | Reiniciar la web (puerto 8006) si no carga        |
-| **journalctl -xe**                      | Logs recientes del sistema                        |
-| **pvereport**                           | Informe completo del nodo (diagnóstico)           |
-| **pvesm status**                        | Almacenamientos y espacio libre                   |
-| **pvesm list local**                    | Contenido de un almacenamiento                    |
+| Comando                               | Qué hace                                          |
+| ------------------------------------- | ------------------------------------------------- |
+| **pveversion -v**                     | Versión de Proxmox y paquetes                     |
+| **pvesh get /nodes**                  | Lista nodos y estado ram, cpu, online             |
+| **apt update && apt full-upgrade -y** | Actualizar el sistema (nunca apt upgrade a secas) |
+| **systemctl status pveproxy**         | Estado de la interfaz web                         |
+| **systemctl status pvedaemon**        | Estado del daemon                                 |
+| **systemctl restart pveproxy**        | Reiniciar la web (puerto 8006) si no carga        |
+| **journalctl -xe**                    | Logs recientes del sistema                        |
+| **pvereport**                         | Informe completo del nodo (diagnóstico)           |
+| **pvesm status**                      | Almacenamientos y espacio libre                   |
+| **pvesm list local**                  | Contenido de un almacenamiento                    |
 
 ## máquinas virtuales
 
@@ -60,6 +61,7 @@
 | **qm reboot** *vmid*                               | Reiniciar                                     |
 | **qm status** *vmid*                               | Estado de una VM                              |
 | **qm config** *vmid*                               | Ver configuración (CPU, RAM, discos, red)     |
+| **qm set** _111_ **--name** _win11-02_             | Cambiar nombre                                |
 | **qm set** *vmid* **--memory 4096**                | Cambiar RAM (MB)                              |
 | **qm set** *vmid* **--cores 2**                    | Cambiar núcleos                               |
 | **qm set** *vmid* **--onboot 1**                   | Arranque automático con el nodo               |

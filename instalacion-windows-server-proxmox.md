@@ -1,10 +1,10 @@
 # instalación de windows server
 
-> Previamente hay que [instalar proxmox](instalar-proxmox)
+> Previamente hay que [instalar proxmox](instalacion-proxmox.md)
 
 ## instalación de windows server
 
-1. La instalación de windows server sigue los mismos pasos que para [instalar windows](instalar-windows-proxmox) 
+1. La instalación de windows server sigue los mismos pasos que para [instalar windows](instalacion-windows-proxmox.md) 
 
 > OJO: si hemos creado el bridge vmbr1, lo seleccionamos en la pestaña Network. El resto de pasos son los mismos.
 
@@ -43,4 +43,4 @@
 
 8. Finalmente, click derecho en la vm -> Convert to Template
 9. Clonamos la plantilla, le damos un nombre y elegimos Full/linked clone
-10. Lo siguiente es [configurar el servidor](configurar-windows-server)
+10. Lo siguiente es [configurar el servidor](configuracion-basica-windows-server.md)

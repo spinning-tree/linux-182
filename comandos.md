@@ -33,6 +33,15 @@
 | **nltest /dsgetdc:** *dominio* | Ver qué DC localiza el equipo           |
 | **nltest /dsregdns**           | Volver a registrar los SRV del DC       |
 | **Get-SmbShare**               | Ver que existan SYSVOL y NETLOGON       |
+## gpo
+
+| Comando                                                                                                                                                                               | Qué hace                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **gpupdate** [**/force**] [**/target:**{**computer** \| **user**}] [**/boot** \| **/logoff**]                                                                                         | Aplica las GPOs ya; /force las vuelve a aplicar todas, /target solo equipo o usuario, /boot y /logoff reinician o cierran sesión si hace falta |
+| **gpresult /r** [**/scope** {**computer** \| **user**}]                                                                                                                               | Resumen de las GPOs aplicadas y filtradas                                                                                                      |
+| **gpresult** [**/user** _DOMINIO\usuario_] **/h** _informe.html_ [**/f**]                                                                                                             | Informe completo en HTML; /user elige el usuario y /f sobrescribe el archivo                                                                   |
+| **gpresult /z**                                                                                                                                                                       | Detalle máximo en la consola                                                                                                                   |
+
 # proxmox
 ## nodo
 

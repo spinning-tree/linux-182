@@ -83,8 +83,35 @@ Las GPO's son paquetes de configuraciones que se definen en el DC y se almacenan
 
 ![](https://imgur.com/0Gt3AVg.png)
 
-> **Ojo con la herencia.** Si creas una sub-OU dentro de equipos y modificas la misma GPO, el equipo mostrará las dos GPOs, porque hereda la de Equipos y además tiene la suya. Cuando dos GPOs configuran lo mismo, gana la que está más cerca del equipo, la de la sub-OU.
+### configuración avanzada gpos
 
+#### Herencia
+Si creas una sub-OU dentro de Equipos y modificas la misma GPO, el equipo hereda la de Equipos pero gana la que está más cerca del equipo, la de la sub-OU.
 
+![](https://imgur.com/6Sbfs1U.png)
 
+#### Block Inheritance
+Se pone en una OU y corta todas las GPOs que vienen de arriba, menos las que están en _Enforced_.
+
+![](https://imgur.com/WobfoyP.png)
+
+#### Enforced
+Se pone en el vínculo de una GPO (no en la OU), y gana a lo que digan las GPOs de las sub-OUs que haya debajo.
+
+![](https://imgur.com/TcY3E6Q.png)
+
+#### Loopback processing
+Generalmente, las GPOs de usuario dependen de la OU del usuario. Con loopback que dependan solamente del equipo en el que inicia sesión, o del equipo más el usuario. 
+
+> Tiene dos modos: **Merge**, el usuario recibe sus GPOS y las del equipo (si hay contradicción, gana el equipo). **Replace**, el usuario recibe las OUs del equipo e ignora las suyas.
+
+1. **Crea la GPO.** Una nueva GPO vinculada a la sub-OU de equipos: _C-Loopback-Portatiles_.
+2. **Activa loopback.** En _Computer Configuration → Policies → Administrative Templates → System → Group Policy → Configure user Group Policy loopback processing mode_, activa la directiva de loopback en modo **Merge**/**Replace**
+3. **Añade la restricción.** En la misma GPO, activa la GPO deseada.
+4. **Aplícala.** Ejecuta **gpupdate /force** en el equipo y cierra la sesión.
+5. **Comprueba.** El mismo usuario, con un resultado distinto según el equipo.
+
+![](https://imgur.com/bH6iVqz.png)
+
+# SMB + NTFS
 

@@ -155,3 +155,5 @@ PS C:\WINDOWS\system32>
 ![](https://imgur.com/kr5lIQS.png)
 
 > Seguir con [configuracion avanzada windows server](configuracion-avanzada-windows-server.md)
+
+
